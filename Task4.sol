@@ -104,7 +104,7 @@ contract NftMarketPlace
 
     function EndAuction() public
     {
-            Details memory detail= details[User][TokenId];
+            Details memory detail= details[msg.sender][TokenId];
             require(msg.sender == token.ownerOf(TokenId),"Only token owner can End Auction");
             detail.TokenId= 0;
 
@@ -112,7 +112,7 @@ contract NftMarketPlace
 
             detail.Wallet += HighestPrice;
 
-            details[User][TokenId] = detail;
+            details[msg.sender][TokenId] = detail;
 
             NftToken[User].TokenId = 0;
             NftToken[User].PriceAmount = 0;
